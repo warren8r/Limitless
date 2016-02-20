@@ -1,0 +1,107 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="UserCreationScreen.SiteMaster" %>
+<%@ Register TagPrefix="telerik" Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI" %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <title><%: Page.Title %>- My ASP.NET Application</title>
+    <asp:PlaceHolder runat="server">     
+          <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>  
+    <webopt:BundleReference runat="server" Path="~/Content/css" /> 
+    <link rel="stylesheet" type="text/css" href="~/Content/ParschStuff.css"> 
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    <asp:ContentPlaceHolder runat="server" ID="HeadContent" />
+</head>
+<body runat="server" style="background-color: #8f9dc1" class="entire-body">
+    <form runat="server">
+    <asp:ScriptManager runat="server" ID="ajaxManager">
+        <Scripts>
+            <%--To learn more about bundling scripts in ScriptManager see http://go.microsoft.com/fwlink/?LinkID=272931&clcid=0x409 --%>
+            <%--Framework Scripts--%>
+            
+            <asp:ScriptReference Name="MsAjaxBundle" />
+            <asp:ScriptReference Name="jquery" />
+            <asp:ScriptReference Name="jquery.ui.combined" />
+            <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+            <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+            <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+            <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+            <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+            <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+            <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+            <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+            <asp:ScriptReference Name="WebFormsBundle" />
+            <%--Site Scripts--%>
+
+        </Scripts>
+    </asp:ScriptManager>
+    <header>
+        <div class="content-wrapper">
+            <div class="float-left"><img ID="imgLogo" src="/Images/fortechLogo.png" class="logo" alt="Fortech Logo" title="Fortech Energy Logo" height="60" width="90"/></div>
+            <div class="float-left">
+                <p class="site-title">
+                    SQL Backend Test Website </p>
+                <telerik:RadMenu runat="server" ID="rdmNavigate" Skin="Windows7" >
+                    <Items>
+                        <telerik:RadMenuItem runat="server" Text="User Administration" GroupSettings-Flow="Vertical">
+                            <Items>
+                                <telerik:RadMenuItem runat="server" Text="Create User" NavigateUrl="~/Default.aspx">
+                                </telerik:RadMenuItem>
+                                <telerik:RadMenuItem runat="server" Text="View Users" NavigateUrl="~/SelectUser.aspx">
+                                </telerik:RadMenuItem>
+                                <telerik:RadMenuItem runat="server" Text="Edit Users" NavigateUrl="~/SelectUser.aspx">
+                                </telerik:RadMenuItem>
+                            </Items>
+                        </telerik:RadMenuItem>
+                        <telerik:RadMenuItem runat="server" Text="Manage Permissions" GroupSettings-Flow="Vertical">
+                            <Items>
+                                <telerik:RadMenuItem runat="server" Text="Create Role" NavigateUrl="~/RolePages/ModifyRole.aspx">
+                                </telerik:RadMenuItem>
+                                <telerik:RadMenuItem runat="server" Text="View Roles" NavigateUrl="~/RolePages/ViewRoles.aspx">
+                                </telerik:RadMenuItem>
+                                <telerik:RadMenuItem runat="server" Text="Assign Roles" NavigateUrl="~/RolePages/AssignRoles.aspx">
+                                </telerik:RadMenuItem>
+                            </Items>
+                        </telerik:RadMenuItem>
+                    </Items>
+                    <DefaultGroupSettings ExpandDirection="Down" Flow="Horizontal" />
+                </telerik:RadMenu>
+                 &nbsp;&nbsp;&nbsp;&nbsp;
+                 <asp:Button runat="server" ID="btnEnterPrivateZone" OnClick="btnEnterPrivateZone_Click" />
+            </div>
+            <div class="float-right">
+                <section id="login">
+                    <asp:Label runat="server" ID="lblLoggedIn" Text="" Visible="false"></asp:Label>
+                    <br />
+                    <asp:Button runat="server" ID="btnLogin" Text="Login" OnClick="btnLogin_Click" />
+                    <asp:Button runat="server" ID="btnLogout" Text="Logout" OnClick="btnLogout_Click" />
+                </section>
+            </div>
+        </div>
+    </header>
+    <div id="body" style="background-color: #8496c5">
+        <asp:ContentPlaceHolder runat="server" ID="FeaturedContent" />
+        <section class="content-wrapper main-content clear-fix">
+            <asp:ContentPlaceHolder runat="server" ID="MainContent" />
+        </section>
+    </div>
+    <footer runat="server">
+        <div class="content-wrapper clearfix" style="background-color: #6b86cf">
+            <div class="float-left" >
+                <p>&copy; Fortech Energy Test Application</p>
+                <asp:SqlDataSource ID="Names" runat="server" ConnectionString="<%$ ConnectionStrings:TestDatabase %>" SelectCommand="filteredNames" SelectCommandType="StoredProcedure" CancelSelectOnNullParameter="False">
+                    <SelectParameters>
+                        <asp:Parameter Name="id" Type="String" />
+                        <asp:Parameter Name="firstName" Type="String" />
+                        <asp:Parameter Name="lastName" Type="String" />
+                    </SelectParameters>
+                </asp:SqlDataSource>
+            </div>
+        </div>
+    </footer>
+    </form>
+</body>
+</html>

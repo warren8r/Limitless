@@ -1,0 +1,99 @@
+﻿.something {
+    color: red;
+}
+
+/* General Page Formatting
+----------------------------------------*/
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%; /* If you don't force it to take up the entire page, it won't */
+    max-height: 80px;
+    text-align: center;
+    background-color: rgb(107, 134, 207);
+}
+
+footer {
+    background-color: #6b86cf;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    max-height: 80px;
+}
+
+.searchbox:focus {
+    background-color: black;
+}
+
+.page-title {
+    text-shadow: 0px 0px 3px darkblue;
+}
+
+.logo {
+    transition: transform 1s;
+}
+
+.logo:hover {
+    transform: scale(2, 2);
+}
+
+.search-table {
+    padding: 0px 0px;
+    margin: auto;
+    border-collapse: collapse;
+}
+
+.search-table td, .search-table th, .search-table caption {
+    padding: 2px 5px;
+}
+
+.search-table td {
+    text-align: center;
+    border: 1px solid black;
+}
+
+.search-table th {
+    border: 1px solid black;
+}
+
+.search-table caption {
+    font-size: 25px;
+}
+
+/* Tooltip
+----------------------------------------*/
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+
+/* Add more variations of the tool tip text with different alignments*/
+.tooltip .tooltiptext, .tooltip .tooltiptextright {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+/* Misc
+----------------------------------------*/
+
+.clearfix {
+    overflow: auto;
+}
